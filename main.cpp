@@ -12,6 +12,7 @@ int main(int argc, char* argv[]){
 	ptr = new UIManager();
 	ptr->open(argv[1]);
 	ptr->layout();
+	ptr->cleanLayout();
 	delete ptr;
 	return 0;
 }

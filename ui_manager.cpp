@@ -16,14 +16,18 @@ void UIManager::open(char* filename){
 }
 
 Element* UIManager::layout(xmlNodePtr node){
+	Element* element= NULL;
 	if (NULL == node){
 		return NULL;
 	}
 
-	_factory->create(node);
-	layout(node->xmlChildrenNode);
-	layout(node->next);
-	return NULL;
+	element = _factory->create(node);
+	if (NULL == element){
+		return NULL;
+	}
+	element->addChild(layout(node->xmlChildrenNode));
+	element->addNeighbor(layout(node->next));
+	return element;
 }
 
 void UIManager::layout(){
@@ -34,4 +38,22 @@ void UIManager::layout(){
 	}
 
 	_root = layout(root);
+}
+
+void UIManager::freeLayout(Element* element){
+	if (NULL == element){
+		return;
+	}
+
+	freeLayout(element->child());
+	freeLayout(element->next());
+	delete element;
+}
+
+void UIManager::cleanLayout(){
+	if (NULL == _root){
+		return;
+	}
+
+	freeLayout(_root);
 }

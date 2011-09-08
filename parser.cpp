@@ -12,7 +12,7 @@ void Parser::open(char* filename){
 		return;
 	}
 
-	_doc = xmlReadFile(filename, "UTF-8", XML_PARSE_RECOVER);
+	_doc = xmlReadFile(filename, "UTF-8", XML_PARSE_RECOVER|XML_PARSE_NOBLANKS);
 	if (_doc == NULL){
 		printf ("open %s faild.\n", filename);
 		return;

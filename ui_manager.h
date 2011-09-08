@@ -12,12 +12,14 @@ private:
 	Element* _root;
 
 	Element* layout(xmlNodePtr node);
+	void freeLayout(Element* element);
 
 public:
 	UIManager();
 	~UIManager();
 	void open(char* filename);
 	void layout();
+	void cleanLayout();
 };
 
 #endif

@@ -4,6 +4,7 @@ include(UsePkgConfig)
 set(target geese)
 set(CMAKE_C_COMPILER gcc)
 set(CMAKE_CXX_COMPILER g++)
+set(CMAKE_BUILD_TYPE Debug)
 
 aux_source_directory(${CMAKE_SOURCE_DIR} SRC)
 message(${SRC})
