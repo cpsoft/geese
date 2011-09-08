@@ -14,10 +14,10 @@ bool Svg::init(xmlNodePtr node){
 	if (NULL == node){
 		return false;
 	}
-	szAttr = xmlGetProp(node, BAD_CAST"width");
-	printf("%s:width = %s\n", node->name, szAttr);
-	szAttr = xmlGetProp(node, BAD_CAST"height");
-	printf("%s:height = %s\n", node->name, szAttr);
+	_width.newValue(xmlGetProp(node, BAD_CAST"width"));
+	_height.newValue(xmlGetProp(node, BAD_CAST"height"));
+	printf("%s:width = %f\n", node->name, _width.value());
+	printf("%s:height = %f\n", node->name, _height.value());
 	return 0;
 }
 

@@ -2,11 +2,12 @@
 #define __SVG_H__
 #include <libxml/tree.h>
 #include "element.h"
+#include "length.h"
 
 class Svg:public Element{
 private:
-	unsigned int _width;
-	unsigned int _height;
+	Length _width;
+	Length _height;
 public:
 	Svg();
 	~Svg();

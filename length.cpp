@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 #include "length.h"
 
 Length::Length(){
@@ -14,12 +15,20 @@ Length::~Length(){
 
 void Length::newValue(xmlChar* value){
 	int len;
-	xmlChar *start, *end;
+	char *start, *end = NULL;
 	if (NULL == value){
 		return;
 	}
+	start = (char*)value;
 
-	_value = atof((char*)value);
+	_value = strtof(start, &end);
+	if(end && strcmp(end, "px") != 0){
+		if(!strcmp(end, "%")){
+			type = LENGTHTYPE_PERCENTAGE;
+		}
+	}else{
+		type = LENGTHTYPE_PX;
+	}
 }
 
 float Length::value(){
